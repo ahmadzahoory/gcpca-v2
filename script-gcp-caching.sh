@@ -38,8 +38,9 @@ sudo chgrp -R webadmins /var/www/html
 sudo chmod -R 775 /var/www/html
 sudo chmod g+s /var/www/html
 sudo yes 'y' | sudo composer install --working-dir=/var/www/html
+sudo systemctl restart apache2.service
 sudo usermod -aG sudo gcpadmin
 sudo echo "gcpadmin:lab-password" | chpasswd
 sudo sed -i 's|[#]*KbdInteractiveAuthentication no|#KbdInteractiveAuthentication no|g' /etc/ssh/sshd_config
 sudo sed -i 's|[#]*#PasswordAuthentication yes|PasswordAuthentication yes|g' /etc/ssh/sshd_config
-sudo systemctl restart apache2.service
+sudo systemctl restart ssh
